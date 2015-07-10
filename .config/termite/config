@@ -1,0 +1,72 @@
+[options]
+resize_grip = false
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+visible_bell = false
+mouse_autohide = false
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Profont 12
+scrollback_lines = 1000
+search_wrap = true
+#icon_name = terminal
+#geometry = 640x480
+
+# "system", "on" or "off"
+cursor_blink = system
+
+# "block", "underline" or "ibeam"
+cursor_shape = underline
+browser = firefox
+
+# $BROWSER is used by default
+# word characters used for word selection
+# (default if unset: all graphic non-punctuation/space characters)
+#word_chars = -A-Za-z0-9,./?%&#:_=+@~
+
+# set size hints for the window
+size_hints = true 
+
+[colors]
+foreground = #dcdccc
+foreground_bold = #ffffff
+#foreground_dim = #888888
+background = rgba(0, 0, 0, 0.6)
+#cursor = #dcdccc
+
+# if unset, will reverse foreground and background
+highlight = #2f2f2f
+#Smyck colorscheme for Termite / VTE.
+
+# colors from color0 to color254 can be set
+color0  = #000000
+color1  = #ae2340
+color2  = #f33b43
+color3  = #f7a93d
+color4  = #1d2041
+color5  = #4c2d4f
+color6  = #BE30D6
+color7  = #D0D0D0
+color8  = #424242
+color9  = #f9274e
+color10 = #f56644
+color11 = #f9d72d
+color12 = #252087
+color13 = #51257a
+color14 = #C933E3
+color15 = #E6E6E6
+color16 = #242424
+
+[hints]
+font = ProFont 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s
