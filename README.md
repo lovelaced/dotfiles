@@ -1,2 +1,3 @@
 # dotfiles
-rice is life
+
+add any config dirs into dotfile_setup.py, add them to folder, then deploy
