@@ -12,14 +12,15 @@ class config_locations:
     xinitrc = ".xinitrc"
     xbindkeys = ".xbindkeys"
     xmodmap = ".Xmodmap"
+    zshrc = ".zshrc"
 
 config_locations = vars(config_locations)
 config_locations.pop('__module__')
 config_locations.pop('__doc__')
 for config in config_locations.values():
-    config = "/" + config
+    config = config
     try:
-        print "Creating symlink " + home + config + " -> " + directory + config
-        os.symlink(config, home + config)
+        print "Creating symlink " + home + "/" + config + " -> " + directory + "/" + config
+        os.symlink(directory + "/" + config, home + "/" + config)
     except OSError as e:
-        print "Couldn't create symlink for " + config
+        print "Couldn't create symlink for " + home + "/" + config
