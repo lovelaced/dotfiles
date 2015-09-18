@@ -6,6 +6,10 @@ colors
 
 export TERM=xterm-256color
 export BROWSER=firefox
+export GOROOT=/usr/lib/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/go
+
 PROMPT="
 %{$fg[lightgreen]%} »  %{$reset_color%}"
 #PROMPT="
@@ -47,12 +51,10 @@ function open() { xdg-open $1 &> /dev/null &disown; }
 function lt() { ls -ltrsa "$@" | tail; }
 function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
 function fname() { find . -iname "*$@*"; }
-function steam() { docker run --name=steam \
--v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm \
--v /run/user/${UID}/pulse:/run/user/${UID}/pulse \
--v /etc/machine-id:/etc/machine-id \
--v ${HOME}/Downloads:/tmp/Downloads \
--e DISPLAY=${DISPLAY} tianon/steam }
+function steam() { docker run -ti --privileged --name=steam \
+-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+-v /dev/dri:/dev/dri \
+-e DISPLAY=${DISPLAY} tianon/steam /bin/bash}
 		    
 conf() {
 	case $1 in
@@ -105,6 +107,9 @@ alias equalizer="alsamixer -D equal"
 alias toi="toilet --font mono12 --filter metal"
 alias mysql="mysql -u root -p"
 alias wifis='wpa_cli status'
+alias scan='wpa_cli scan'
+alias sresults='wpa_cli scan_results'
+alias networks='wpa_cli list_networks'
 alias vim='nvim'
 
 # Shortcuts
@@ -139,7 +144,8 @@ alias please='sudo'
 alias fucking='sudo'
 alias sleep='sudo systemctl hibernate'
 alias record='arecord -f cd -t raw | oggenc - -r -o out.ogg'
-
+alias neuro='ssh neuro@localhost -p 10002'
+alias tunnel='sudo systemctl start sshd && autossh -M 20000 -f -N valka@cyberpunk.party -R 10002:localhost:22 -C'
 
 # tar aliases
 alias tarzip='unzip'
