@@ -7,8 +7,8 @@ colors
 export TERM=xterm-256color
 export BROWSER=firefox
 export GOROOT=/usr/lib/go
-export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
 PROMPT="
 %{$fg[lightgreen]%} »  %{$reset_color%}"
@@ -47,9 +47,6 @@ bindkey '^R' history-incremental-search-backward
 bindkey "^j" history-beginning-search-backward
 bindkey "^k" history-beginning-search-forward
 
-function open() { xdg-open $1 &> /dev/null &disown; }
-function lt() { ls -ltrsa "$@" | tail; }
-function psgrep() { ps axuf | grep -v grep | grep "$@" -i --color=auto; }
 function fname() { find . -iname "*$@*"; }
 function steam() { docker run -ti --privileged --name=steam \
 -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
@@ -97,7 +94,6 @@ function sd()
 
 
 # Sudo alias 
-alias svim='sudoedit'
 alias pacman='sudo pacman'
 
 # Programs
@@ -105,57 +101,26 @@ alias installfont='sudo fc-cache -f -v'
 alias alsamixer="alsamixer -g"
 alias equalizer="alsamixer -D equal"
 alias toi="toilet --font mono12 --filter metal"
-alias mysql="mysql -u root -p"
-alias wifis='wpa_cli status'
+alias wifis='wpa_cli status -i wlp3s0'
 alias scan='wpa_cli scan'
 alias sresults='wpa_cli scan_results'
 alias networks='wpa_cli list_networks'
 alias vim='nvim'
 
 # Shortcuts
-#alias rm='rm -i'
-alias rmi='rm -i'
-#alias mv='mv -i'
 alias c='xsel -ib'
-alias emac='emacs -nw'
-alias h='history | tail'
-alias hg='history | grep '
-alias ch='chmod 755 '
-alias ~='urxvtc' #Open new terminals in current working directory
-alias ~~='urxvtc && urxvtc'
-alias ~~~='urxvtc && urxvtc && urxvtc'
-alias ~~~~='urxvtc && urxvtc && urxvtc && urxvtc'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-alias ']'='open'
-alias ll='ls -alF'
-alias la='ls -A'
-alias lla='ls -lA'
-alias l='ls -CF'
+alias l='ls -lahtr'
 alias vi='vim'
 alias bat='acpi -V | grep Battery'
-alias install='sudo pacman -S'
-alias remove='sudo pacman -Rsc'
-alias upgrade='sudo pacman -Syu'
-alias please='sudo'
-alias fucking='sudo'
 alias sleep='sudo systemctl hibernate'
 alias record='arecord -f cd -t raw | oggenc - -r -o out.ogg'
 alias neuro='ssh neuro@localhost -p 10002'
 alias tunnel='sudo systemctl start sshd && autossh -M 20000 -f -N valka@cyberpunk.party -R 10002:localhost:22 -C'
-
-# tar aliases
-alias tarzip='unzip'
-alias tarx='tar -xvf'
-alias targz='tar -zxvf'
-alias tarbz2='tar -jxvf'
-
-#alias mkdir and cd
-function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
-function cdl () { cd "$@" && ls; }
 
 # enable color support of ls and also add handy aliases
 alias ls='ls --color=auto'
@@ -173,7 +138,7 @@ set -o vi
 COLORFGBG="default;default"
 
 pathdirs=(
-    ~/scripts
+    $HOME/scripts
 )
 for dir in $pathdirs; do
     if [ -d $dir ]; then
@@ -182,8 +147,8 @@ for dir in $pathdirs; do
 done
 
 export EDITOR="vim"
-export XDG_CONFIG_HOME="~/.config"
-export PATH=$PATH:~/bin
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH=$PATH:$HOME/bin
 export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=true' 
 export JAVA_FONTS=/usr/share/fonts/TTF
 
@@ -222,3 +187,5 @@ man() {
             man "$@"
 }
 
+
+unset XDG_CONFIG_HOME
