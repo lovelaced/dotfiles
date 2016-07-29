@@ -5,6 +5,8 @@ directory = os.path.dirname(os.path.abspath(__file__))
 print directory
 
 class config_locations:
+    muttrc = "/etc/Muttrc"
+    mutt_colors = ".mutt/.colors"
     bspwm = ".config/bspwm/bspwmrc"
     sxhkd = ".config/sxhkd/sxhkdrc"
     termite = ".config/termite/config"
