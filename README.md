@@ -14,4 +14,10 @@ Requires the following to be installed:
 
 Bar, which requires conky, can be found in the bspwm-conkbar repo.
 
+NOTE: if you're doing this on a fresh install, you may have to do the following:
+```
+mkdir ~/.config && cd ~/.config
+mkdir bspwm && mkdir sxhkd && mkdir termite
+```
+
 ![screenshot](example.png?raw=true)
