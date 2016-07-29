@@ -4,7 +4,7 @@
 
 source ~/.mutt/.colors
 
-set from = "egrasmick@wisc.edu"
+set from = "email@domain.edu"
 
 
 # Macros
