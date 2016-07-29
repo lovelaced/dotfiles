@@ -16,6 +16,7 @@ fi
 # exec startxfce4
 # ...or the Window Manager of your choice
 
+xrdb -merge ~/.Xresources
 feh --bg-fill ~/.wallpaper/current.jpg &
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 conky &
@@ -25,4 +26,5 @@ termite --exec='bspc monitor LVDS1 -d i ii iii iv v vi vii viii ix x' &
 termite &
 termite &
 compton &
+#exec fluxbox
 exec bspwm -c ~/.config/bspwm/bspwmrc

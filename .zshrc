@@ -8,7 +8,7 @@ export TERM=xterm-256color
 export BROWSER=firefox
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin:$GOROOT/bin:$HOME/bin
 
 PROMPT="
 %{$fg[lightgreen]%} »  %{$reset_color%}"
@@ -101,11 +101,10 @@ alias installfont='sudo fc-cache -f -v'
 alias alsamixer="alsamixer -g"
 alias equalizer="alsamixer -D equal"
 alias toi="toilet --font mono12 --filter metal"
-alias wifis='wpa_cli status -i wlp3s0'
+alias wifis='wpa_cli status -i wlp2s0'
 alias scan='wpa_cli scan'
 alias sresults='wpa_cli scan_results'
 alias networks='wpa_cli list_networks'
-alias vim='nvim'
 
 # Shortcuts
 alias c='xsel -ib'
@@ -132,7 +131,6 @@ alias egrep='egrep --color=auto'
 
 set -o noclobber
 set -o vi
-
 
 # MUTT BG fix
 COLORFGBG="default;default"
@@ -174,6 +172,15 @@ extract () {
      fi
 }
 
+sshmux () {
+  ssh -o ControlPath=~/.ssh/mux/%r@%h:%p "$@"
+}
+muxmeup () {
+  sshmux -MNf "$@"
+}
+killmux () {
+  sshmux -O exit "$@"
+}
 #color man pages
 man() {
     env \
